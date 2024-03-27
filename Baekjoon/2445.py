@@ -5,13 +5,12 @@ import sys
 N = int(sys.stdin.readline().strip())
 
 for i in range(1, N + 1):
-    left_stars = "*" * i
-    middle_space = " " * 2 * (N - i)
-    right_stars = "*" * i
-    print(left_stars + middle_space + right_stars)
+    star = '*' * i
+    space = ' ' * (2 * (N - i))
+    print(star + space + star)
 
-for j in range(1, N + 1):
-    left_stars = "*" * (N - j)
-    middle_space = " " * 2 * j
-    right_stars = "*" * (N - j)
-    print(left_stars + middle_space + right_stars)
+for i in range(N - 1, 0, -1):
+    star = '*' * i
+    space = ' ' * (2 * (N - i))
+    print(star + space + star)
+    
