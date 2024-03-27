@@ -8,7 +8,7 @@ total_credit = 0 # 학점 총합을 담을 변수
 total_score = 0	# (학점 * 과목평점) 총합을 담을 변수
 
 for _ in range(20) :
-    subject, credit, grade = list(sys.stdin.readline().split())
+    _, credit, grade = list(sys.stdin.readline().split())
     credit = float(credit)
     if grade != "P" :
         total_credit += credit
