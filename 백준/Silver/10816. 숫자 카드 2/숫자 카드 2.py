@@ -8,22 +8,13 @@ _M = list(map(int, sys.stdin.readline().strip().split()))
 DICT = {}
 
 for n in _N:
-  if n in DICT:
-    DICT[n] += 1
-  else:
-    DICT[n] = 1
-
-def binary(m, _N, start, end):
-    if start > end:
-        return 0
-    mid = (start + end) // 2
-    if m == _N[mid]:
-        return DICT[m]
-    elif m < _N[mid]:
-        return binary(m, _N, start, mid - 1)
+    if n in DICT:
+        DICT[n] += 1
     else:
-        return binary(m, _N, mid + 1, end)
-
+        DICT[n] = 1
 
 for m in _M:
-  print(binary(m, _N, 0, len(_N)-1), end=' ')
+  if m in DICT:
+    print(DICT[m], end=' ')
+  else:
+     print(0, end=' ')
