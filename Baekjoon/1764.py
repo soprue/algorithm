@@ -2,11 +2,9 @@
 
 import sys
 
-input_lines = sys.stdin.readlines()
-N, M = map(int, input_lines[0].strip().split())
-
-_N = set([line.strip() for line in input_lines[1:N + 1]])
-_M = set([line.strip() for line in input_lines[N + 1:]])
+N, M = map(int, sys.stdin.readline().strip().split())
+_N = set([sys.stdin.readline().strip() for _ in range(N)])
+_M = set([sys.stdin.readline().strip() for _ in range(M)])
 
 intersection = sorted(_N & _M)
 print(len(intersection))
