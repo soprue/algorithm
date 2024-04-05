@@ -1,7 +1,9 @@
 # https://www.acmicpc.net/problem/2110
 
-N, C = map(int, input().split())
-houses = [int(input()) for _ in range(N)]
+import sys
+
+N, C = map(int, sys.stdin.readline().split())
+houses = [int(sys.stdin.readline()) for _ in range(N)]
 
 # 집의 위치를 오름차순으로 정렬
 houses.sort()
