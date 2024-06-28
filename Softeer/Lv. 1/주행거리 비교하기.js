@@ -8,11 +8,11 @@ const rl = readline.createInterface({
 let A, B;
 
 rl.on('line', (input) => {
-    [A, B] = input.split(" ");
-});
+    const [A, B] = input.split(" ").map(Number);
 
-rl.on('close', () => {
-    if(A > B) console.log("A");
-    else if(A < B) console.log("B");
-    else if(A === B) console.log("same");
+    if (A > B) console.log("A");
+    else if (A < B) console.log("B");
+    else console.log("same");
+
+    rl.close();
 });
