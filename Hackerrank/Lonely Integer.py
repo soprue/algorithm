@@ -5,7 +5,7 @@ def lonelyinteger(a):
     numbers = set(a)
     
     for number in numbers:
-        if(a.count(number) == 1):
+        if a.count(number) == 1:
             answer = number
             break
             
