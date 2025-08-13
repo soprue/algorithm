@@ -1,35 +1,33 @@
 import sys
+
 input = sys.stdin.readline
 
-N, M = map(int, input().split())
-A = [list(map(int, input().split())) for _ in range(N)]
+N, M = map(int, input().strip().split())
+A = [list(map(int, input().strip().split())) for _ in range(N)]
 
-# N과 M 어느 쪽을 압축 길이로 삼을지 결정 (더 짧은 쪽을 행으로 취급하면 유리)
-transpose = False
-if N > M:
-    # 전치해서 N<=M 형태로 맞추기
-    A = list(map(list, zip(*A)))
-    N, M = M, N
-    transpose = True
+answer = -10**18
 
-answer = -10**18  # 모든 원소가 음수일 수 있으므로 매우 작은 값으로 시작
+def kadane(arr):
+  best = -10**18
+  current = 0
 
-# top..bottom 행 구간 고정
+  for x in arr:
+    current = max(x, current + x)
+    best = max(best, current)
+
+  return best
+
+# top: 시작 행, bottom: 끝 행
 for top in range(N):
-    colSum = [0] * M
-    for bottom in range(top, N):
-        # 열별 누적합 업데이트
-        row = A[bottom]
-        for j in range(M):
-            colSum[j] += row[j]
+  # colSum[j] = top~bottom 사이에서 i번째 열의 합
+  colSum = [0] * M
+  for bottom in range(top, N):
+    # 현재 bottom 행을 합산해서 colSum 갱신
+    row = A[bottom]
+    for i in range(M):
+      colSum[i] += row[i]
 
-        # 1D 최대 부분합 (Kadane) all-negative 대비 위해 -inf 시작
-        best = -10**18
-        cur = 0
-        for v in colSum:
-            cur = max(v, cur + v)
-            best = max(best, cur)
-
-        answer = max(answer, best)
+    # colSum에서 "연속된 열 구간"의 최댓값 = (top..bottom) x (어떤 열 구간)의 최댓 직사각형 합
+    answer = max(answer, kadane(colSum))
 
 print(answer)
