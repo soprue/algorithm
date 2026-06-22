@@ -1,11 +1,18 @@
 import os
 
 def sockMerchant(n, ar):
-    answer = 0
-    numbers = set(ar)
+    count = {}
     
-    for number in numbers:
-        answer += ar.count(number) // 2
+    for color in ar:
+        if color in count:
+            count[color] += 1
+        else:
+            count[color] = 1
+    
+    answer = 0
+    
+    for value in count.values():
+        answer += value // 2
         
     return answer
 
@@ -13,6 +20,7 @@ if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
     n = int(input().strip())
+
     ar = list(map(int, input().rstrip().split()))
 
     result = sockMerchant(n, ar)
